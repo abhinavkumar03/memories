@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import { InputLabel } from '@mui/material';
 // import 'react-tagsinput/react-tagsinput.css';
 
 import Posts from '../Posts/Posts';
@@ -24,7 +23,7 @@ const Home = () => {
     const page = query.get('page') || 1;
     const searchQuery = query.get('searchQuery');
     const [search, setSearch] = useState('');
-    const [tags, setTags] = useState([]);
+    // const [tags, setTags] = useState([]);
 
     const handleKeyDown = (e) => {
       if (e.key === 'Enter') {

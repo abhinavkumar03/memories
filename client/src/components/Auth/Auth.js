@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
-import { GoogleLogin, googleLogout } from '@react-oauth/google';
+import { GoogleLogin } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
-import Icon from "./icon";
 import { LockOutlined } from '@mui/icons-material';
 import Input from './Input';
-import useStyles from './styles';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
