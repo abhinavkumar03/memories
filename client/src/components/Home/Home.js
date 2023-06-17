@@ -32,17 +32,17 @@ const Home = () => {
       }
     };
 
-    const handleAddChip = (chip) => {
-      setTags([...tags, chip]);
-    };
+    // const handleAddChip = (chip) => {
+    //   setTags([...tags, chip]);
+    // };
   
-    const handleDeleteChip = (chip) => {
-      setTags(tags.filter((tag) => tag !== chip));
-    }
+    // const handleDeleteChip = (chip) => {
+    //   setTags(tags.filter((tag) => tag !== chip));
+    // }
 
-    const handleChange = (newTags) => {
-      setTags(newTags);
-    };
+    // const handleChange = (newTags) => {
+    //   setTags(newTags);
+    // };
 
     const searchPost = () => {
       if(search.trim() || tags){
@@ -63,8 +63,9 @@ const Home = () => {
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
               <AppBar className={classes.appBarSearch} style={{ borderRadius: 4, marginBottom: '1rem', display: 'flex', padding: '16px'}} position='static' color='inherit'>
-                <TextField name='search' variant='outlined' label="Search Memories" fullWidth value={search} onKeyDown={handleKeyDown} onChange={(e) => { setSearch(e.target.value) }} />
-                <InputLabel style={{ margin: '10px 0' }} value={tags} onAdd={handleAddChip} onChange={handleChange} onDelete={handleDeleteChip} label="Search Tags" variant='outline'/>
+                <TextField name='search' variant='outlined' label="Search Memories" fullWidth value={search} onKeyDown={handleKeyDown}  style={{ margin: '10px 0' }} onChange={(e) => { setSearch(e.target.value) }} />
+ 
+                {/* <TextField label="Search Tags" variant="outlined" style={{ margin: '10px 0' }} value={tags} onAdd={handleAddChip} onChange={handleChange} onDelete={handleDeleteChip} /> */}
                 <Button onClick={searchPost} className={classes.searchButton} color="primary" variant='contained'> Search </Button>
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />

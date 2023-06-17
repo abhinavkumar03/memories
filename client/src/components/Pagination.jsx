@@ -12,12 +12,12 @@ const Paginate = ({ page }) => {
 
     useEffect(() => {
       if(page) dispatch(getPosts(page))
-    }, [page], [location])
+    }, [page, location, dispatch])
     
 
     return(
-        <Pagination style={{ display: 'flex', justifyContent: 'space-around'}}  count={numberOfPages} page={Number(page) || 1} variant="outlined" color="primary" renderItem={(item) => (
-            <PaginationItem {...item} style={{ display: 'flex', justifyContent: 'space-around'}}  component={Link} to={`/posts?page=${item.page}`} />
+        <Pagination style={{ display: 'flex', justifyContent: 'space-around', margin: 'auto'}}  count={numberOfPages} page={Number(page) || 1} variant="outlined" color="primary" renderItem={(item) => (
+            <PaginationItem {...item} style={{ display: 'flex', justifyContent: 'space-between'}}  component={Link} to={`/posts?page=${item.page}`} />
         )} />
     );
 };

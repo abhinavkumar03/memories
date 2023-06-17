@@ -21,34 +21,8 @@ const Auth = () => {
     const [formData, setFromData] = useState(initialState);
     const dispatch = useDispatch();
 
-    const theme = createTheme((theme) => ({
-      paper: {
-        marginTop: theme.spacing(8),
-        display: 'flex',
-        flexDirection: 'column',
-        alignItems: 'center',
-        padding: theme.spacing(2),
-      },
-      root: {
-        '& .MuiTextField-root': {
-          margin: theme.spacing(1),
-        },
-      },
-      avatar: {
-        margin: theme.spacing(1),
-        backgroundColor: theme.palette.secondary.main,
-      },
-      form: {
-        width: '100%', // Fix IE 11 issue.
-        marginTop: theme.spacing(3),
-      },
-      submit: {
-        margin: theme.spacing(3, 0, 2),
-      },
-      googleButton: {
-        marginBottom: theme.spacing(2),
-      },
-    }));
+
+    const theme = createTheme((theme) => ({ }));
 
 
 
@@ -94,12 +68,13 @@ const Auth = () => {
     }
   return (
     <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
-        <Avatar className={classes.avatar} style={{}}>
+      <Paper elevation={3} style={{ marginTop: theme.spacing(8), display: 'flex', flexDirection: 'column',  alignItems: 'center',
+    padding: theme.spacing(2)}}>
+        <Avatar  style={{margin: theme.spacing(1), backgroundColor: theme.palette.secondary.main}}>
           <LockOutlined/>
         </Avatar>
         <Typography variant="h5">{isSignup? 'Sign Up' : 'Sign In'}</Typography>
-        <form action="" className={classes.form} style={{}} onSubmit={handleSubmit}>
+        <form action="" style={{width: '100%', marginTop: theme.spacing(3)}} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {
               isSignup && (
@@ -115,8 +90,9 @@ const Auth = () => {
 
 
 
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} style={{}}>{isSignup? 'Sign Up': 'Sign In'}</Button>
-            <GoogleLogin fullWidth
+            <Button type="submit" fullWidth variant="contained" color="primary" style={{margin: theme.spacing(2, 0, 2, 2)}}>{isSignup? 'Sign Up': 'Sign In'}</Button>
+            <div style={{margin: theme.spacing(0, 0, 0, 2)}} >
+            <GoogleLogin fullWidth 
               clientId="435406527920-e6hcotuj5fj19sskellb3jpenmf91hif.apps.googleusercontent.com"
               buttonText="Sign in with Google"
               onSuccess={googleSuccess}
@@ -128,6 +104,7 @@ const Auth = () => {
                 </button>
               )}
             />
+            </div>
             <Grid container justifyContent="flex-end"><Grid item><Button onClick={switchMode}>{isSignup? 'Already have account? Sign In': 'Dont have account? Sign In'}</Button></Grid></Grid>
           </Grid>
         </form>

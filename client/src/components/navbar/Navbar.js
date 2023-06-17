@@ -24,13 +24,15 @@ const Navbar = () => {
         const decodedToken = jwtDecode(token);
 
         if(decodedToken.exp * 1000 < new Date().getTime()){
-          handleLogout();
+          dispatch({ type: 'LOGOUT' });
+          setUser(null);
+          navigate("/");
         } 
       }
 
       setUser(JSON.parse(localStorage.getItem('profile')));
     
-    }, [location]);
+    }, [location, user?.token, navigate, dispatch]);
 
     const handleLogout = () => {
       dispatch({ type: 'LOGOUT' });
