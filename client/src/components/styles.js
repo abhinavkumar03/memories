@@ -1,7 +1,9 @@
-import { makeStyles } from "@material-ui/core/styles";
+import { createStyles, createTheme } from '@mui/material/styles';
 
-export default makeStyles(() => ({
+const Theme = createTheme(() => ({
     ul: {
         justifyContent: 'space-around'
     }
 }))
+
+  export default Theme;

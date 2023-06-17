@@ -1,12 +1,12 @@
 import React, { useState, useRef } from "react";
-import { Typography, TextField, Button  } from "@material-ui/core";
+import { Typography, TextField, Button  } from "@mui/material";
 import { useDispatch } from "react-redux";
 import { commentPost } from '../../actions/Posts';
 
 import useStyles from './styles';
 
 const CommentSection = ({ post }) => {
-    const classes = useStyles();
+    const classes = useStyles;
     const [comments, setComments] = useState(post?.comments);
     const [comment, setComment] = useState('');
     const dispatch = useDispatch();
@@ -26,8 +26,8 @@ const CommentSection = ({ post }) => {
 
     return(
         <div>
-            <div className={classes.CommentsOuterContainer}>
-                <div className={classes.commentsInnerContainer}>
+            <div className={classes.CommentsOuterContainer} style={{display: 'flex', justifyContent: 'space-between'}}>
+                <div className={classes.commentsInnerContainer} style={{ height: '200px', overflowY: 'auto', marginRight: '30px'}}>
                     <Typography gutterBottom variant="h6">Comments</Typography>
                     {comments.map((c, i) => (
                         <Typography key={i} variant="subtitle1" gutterBottom>

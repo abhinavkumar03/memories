@@ -1,15 +1,16 @@
 import React, { useState, useEffect } from 'react'
-import { AppBar, Typography, Toolbar, Button, Avatar } from '@material-ui/core';
+import { AppBar, Typography, Toolbar, Button, Avatar } from '@mui/material';
 import { Link , useNavigate, useLocation } from 'react-router-dom';
 import memoriesLogo from '../../images/memories-Logo.png';
 import memoriesText from '../../images/memories-Text.png';
 import { useDispatch } from 'react-redux';
 import jwtDecode from 'jwt-decode';
+import { deepPurple } from '@mui/material/colors';
 
-import useStyles from './styles'
+import useStyles from './styles';
 
 const Navbar = () => {
-    const classes = useStyles();
+    const classes = useStyles;
     const dispatch = useDispatch();
     let navigate = useNavigate();
     const location = useLocation();
@@ -38,20 +39,20 @@ const Navbar = () => {
     }
 
   return (
-    <AppBar className={classes.appBar} position="static" color="inherit">
-      <Link to="/" className={classes.brandContainer}>
+    <AppBar className={classes.appBar} style={{borderRadius: 15, margin: '30px 0', display: 'flex', flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', padding: '10px 50px'}} position="static" color="inherit">
+      <Link to="/" className={classes.brandContainer} style={{display: 'flex', alignItems: 'center'}}>
         <img src={memoriesText} alt="" height="45px"/>
-        <img className={classes.image} src={memoriesLogo} alt="icon" height="40px" />
+        <img className={classes.image} style={{marginLeft: '15px'}} src={memoriesLogo} alt="icon" height="40px" />
       </Link>
-      <Toolbar className={classes.toolbar}>
+      <Toolbar className={classes.toolbar} style={{display: 'flex', justifyContent: 'flex-end', width: '400px'}}>
         {user ? (
-          <div className={classes.profile}>
-            <Avatar className={classes.purple} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
-            <Typography className={classes.userName} varient="h6">{user.result.name}</Typography>
-            <Button variant="container" className={classes.logout} onClick={handleLogout} color="secondary">Logout</Button>
+          <div style={{display: 'flex', justifyContent: 'space-between', width: '400px'}}>
+            <Avatar className={classes.purple} style={{backgroundColor: deepPurple[500]}} alt={user.result.name} src={user.result.picture}>{user.result.name.charAt(0)}</Avatar>
+            <Typography className={classes.userName} style={{display: 'flex', alignItems: 'center'}} varient="h6">{user.result.name}</Typography>
+            <Button variant="container" className={classes.logout} style={{backgroundColor: 'tomato'}} onClick={handleLogout} color="secondary">Logout</Button>
           </div>
         ):(
-          <Button component={Link} to="/auth" className={classes.login} variant="container" color="primary" background="primary">Sign In</Button>
+          <Button component={Link} to="/auth" className={classes.login} style={{backgroundColor: 'DodgerBlue'}} variant="container" color="primary" background="primary">Sign In</Button>
         )}
       </Toolbar>
     </AppBar>

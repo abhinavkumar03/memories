@@ -1,6 +1,6 @@
-import { makeStyles } from '@material-ui/core/styles';
+import { createStyles, createTheme } from '@mui/material/styles';
 
-export default makeStyles({
+export default createTheme({
   media: {
     height: 0,
     paddingTop: '56.25%',

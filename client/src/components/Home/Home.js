@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@material-ui/core';
+import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
-import ReactTagsInput from 'react-tagsinput';
-import 'react-tagsinput/react-tagsinput.css';
+import { InputLabel } from '@mui/material';
+// import 'react-tagsinput/react-tagsinput.css';
 
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
@@ -18,7 +18,7 @@ function useQuery(){
 const Home = () => {
     const [currentId, setCurrentId] = useState(0);
     const dispatch = useDispatch();
-    const classes = useStyles();
+    const classes = useStyles;
     const navigate = useNavigate();
     const location = useLocation();
     const query = useQuery();
@@ -63,15 +63,15 @@ const Home = () => {
               <Posts setCurrentId={setCurrentId} />
             </Grid>
             <Grid item xs={12} sm={6} md={3}>
-              <AppBar className={classes.appBarSearch} position='static' color='inherit'>
+              <AppBar className={classes.appBarSearch} style={{ borderRadius: 4, marginBottom: '1rem', display: 'flex', padding: '16px'}} position='static' color='inherit'>
                 <TextField name='search' variant='outlined' label="Search Memories" fullWidth value={search} onKeyDown={handleKeyDown} onChange={(e) => { setSearch(e.target.value) }} />
-                <ReactTagsInput style={{ margin: '10px 0' }} value={tags} onAdd={handleAddChip} onChange={handleChange} onDelete={handleDeleteChip} label="Search Tags" variant='outline'/>
+                <InputLabel style={{ margin: '10px 0' }} value={tags} onAdd={handleAddChip} onChange={handleChange} onDelete={handleDeleteChip} label="Search Tags" variant='outline'/>
                 <Button onClick={searchPost} className={classes.searchButton} color="primary" variant='contained'> Search </Button>
               </AppBar>
               <Form currentId={currentId} setCurrentId={setCurrentId} />
               {(!searchQuery && !tags.length) && (
               <Paper elevation={6}>
-                <Paginate page={page} className={classes.pagination} />
+                <Paginate page={page} className={classes.pagination} style={{borderRadius: 4, marginTop: '1rem',padding: '16px'}} />
               </Paper> )}
             </Grid>
           </Grid>

@@ -1,25 +1,28 @@
 import React, { useState } from 'react';
-import { Avatar, Button, Paper, Grid, Typography, Container } from '@material-ui/core';
+import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
 import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
 import Icon from "./icon";
-import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
+import { LockOutlined } from '@mui/icons-material';
 import Input from './Input';
-import useStyles from './styles';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
+import { createTheme } from '@mui/material';
 
 const initialState = { firstName: '', lastName: '', email: '', password: '', confirmPassword: ''}
 
 const Auth = () => {
-    const classes = useStyles();
     let navigate = useNavigate();
     
     const [showPassword, setShowPassword] = useState(false);
     const [isSignup, setIsSignup] = useState(false);
     const [formData, setFromData] = useState(initialState);
     const dispatch = useDispatch();
+
+    const theme = createTheme((theme) => ({ }));
+
+
 
     const handleShowPassword = () => {
       setShowPassword((prevShowpassword)=> !prevShowpassword);
@@ -62,13 +65,13 @@ const Auth = () => {
       setShowPassword(false);
     }
   return (
-    <Container component="main" maxWidth="xs">
-      <Paper className={classes.paper} elevation={3}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon/>
+    <Container component="main" style={{'& .MuiTextField-root': { margin: theme.spacing(1), }}} maxWidth="xs">
+      <Paper className={theme.paper} style={{marginTop: theme.spacing(8), display: 'flex', flexDirection: 'column',  alignItems: 'center', padding: theme.spacing(2)}} elevation={3}>
+        <Avatar className={theme.avatar} style={{margin: theme.spacing(1), backgroundColor: theme.palette.secondary.main}}>
+          <LockOutlined/>
         </Avatar>
         <Typography variant="h5">{isSignup? 'Sign Up' : 'Sign In'}</Typography>
-        <form action="" className={classes.form} onSubmit={handleSubmit}>
+        <form action="" className={theme.form} style={{ width: '100%', marginTop: theme.spacing(3)}} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {
               isSignup && (
@@ -84,7 +87,8 @@ const Auth = () => {
 
 
 
-            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit}>{isSignup? 'Sign Up': 'Sign In'}</Button>
+            <Button type="submit" fullWidth variant="contained" color="primary" className={theme.submit} style={{margin: theme.spacing(3, 0, 3, 2)}}>{isSignup? 'Sign Up': 'Sign In'}</Button>
+            <div fullWidth style={{margin: theme.spacing(0, 0, 0, 2)}}>
             <GoogleLogin fullWidth
               clientId="435406527920-e6hcotuj5fj19sskellb3jpenmf91hif.apps.googleusercontent.com"
               buttonText="Sign in with Google"
@@ -92,11 +96,14 @@ const Auth = () => {
               onFailure={googleError}
               cookiePolicy="single_host_origin"
               render={(renderProps) => (
-                <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
+                <button onClick={renderProps.onClick} fullWidth  disabled={renderProps.disabled}>
                   Sign in with Google
                 </button>
               )}
             />
+
+</div>
+
             <Grid container justifyContent="flex-end"><Grid item><Button onClick={switchMode}>{isSignup? 'Already have account? Sign In': 'Dont have account? Sign In'}</Button></Grid></Grid>
           </Grid>
         </form>
