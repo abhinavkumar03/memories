@@ -1,4 +1,4 @@
-import { createStyles, createTheme,  } from '@mui/material/styles';
+import { createTheme,  } from '@mui/material/styles';
 import { deepPurple } from '@mui/material/colors';
 
 export default createTheme((theme) => ({

@@ -1,21 +1,19 @@
 import React, { useEffect }from "react";
 import { Pagination, PaginationItem } from '@mui/material';
-import { Link, useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 import { getPosts } from "../actions/Posts";
 
-import useStyles from "./styles";
-
 const Paginate = ({ page }) => {
-    const location = useLocation();
     const { numberOfPages } = useSelector((state) => state.posts);
-    const classes = useStyles;
     const dispatch = useDispatch();
 
     useEffect(() => {
-      if(page) dispatch(getPosts(page))
-    }, [page], [location])
+        if (page) {
+          dispatch(getPosts(page));
+        }
+      }, [page, dispatch]);
     
 
     return(

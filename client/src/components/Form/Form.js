@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { TextField, Button, Typography, Paper } from '@mui/material';
 import { useDispatch, useSelector } from 'react-redux';
 import FileBase from 'react-file-base64';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import useStyles from './Style';
 import { createPost, updatePost } from '../../actions/Posts';
@@ -13,12 +13,11 @@ const Form = ({ currentId, setCurrentId }) => {
   const dispatch = useDispatch();
   const classes = useStyles;
   const user = JSON.parse(localStorage.getItem('profile'));
-  const location = useLocation();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (post) setPostData(post);
-  }, [location]);
+  }, [dispatch, post]);
 
   const clear = () => {
     setCurrentId(0);

@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Container, Grow, Grid, Paper, AppBar, TextField, Button } from '@mui/material';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { InputLabel } from '@mui/material';
@@ -7,7 +7,7 @@ import { InputLabel } from '@mui/material';
 import Posts from '../Posts/Posts';
 import Form from '../Form/Form';
 import { useDispatch } from 'react-redux';
-import { getPosts, getPostsBySearch } from '../../actions/Posts';
+import { getPostsBySearch } from '../../actions/Posts';
 import useStyles from './styles';
 import Paginate from '../Pagination';
 
@@ -20,7 +20,6 @@ const Home = () => {
     const dispatch = useDispatch();
     const classes = useStyles;
     const navigate = useNavigate();
-    const location = useLocation();
     const query = useQuery();
     const page = query.get('page') || 1;
     const searchQuery = query.get('searchQuery');

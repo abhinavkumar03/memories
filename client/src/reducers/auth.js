@@ -1,4 +1,3 @@
-import React from 'react'
 import { AUTH, LOGOUT } from '../constants/actionTypes';
 
 
