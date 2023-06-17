@@ -1,9 +1,11 @@
 import React, { useState } from 'react';
 import { Avatar, Button, Paper, Grid, Typography, Container } from '@mui/material';
-import { GoogleLogin } from '@react-oauth/google';
+import { GoogleLogin, googleLogout } from '@react-oauth/google';
 import { useDispatch } from 'react-redux';
+import Icon from "./icon";
 import { LockOutlined } from '@mui/icons-material';
 import Input from './Input';
+import useStyles from './styles';
 import jwt_decode from 'jwt-decode';
 import { useNavigate } from 'react-router-dom';
 import { signin, signup } from '../../actions/auth';
@@ -19,7 +21,34 @@ const Auth = () => {
     const [formData, setFromData] = useState(initialState);
     const dispatch = useDispatch();
 
-    const theme = createTheme((theme) => ({ }));
+    const theme = createTheme((theme) => ({
+      paper: {
+        marginTop: theme.spacing(8),
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: theme.spacing(2),
+      },
+      root: {
+        '& .MuiTextField-root': {
+          margin: theme.spacing(1),
+        },
+      },
+      avatar: {
+        margin: theme.spacing(1),
+        backgroundColor: theme.palette.secondary.main,
+      },
+      form: {
+        width: '100%', // Fix IE 11 issue.
+        marginTop: theme.spacing(3),
+      },
+      submit: {
+        margin: theme.spacing(3, 0, 2),
+      },
+      googleButton: {
+        marginBottom: theme.spacing(2),
+      },
+    }));
 
 
 
@@ -64,13 +93,13 @@ const Auth = () => {
       setShowPassword(false);
     }
   return (
-    <Container component="main" style={{'& .MuiTextField-root': { margin: theme.spacing(1), }}} maxWidth="xs">
-      <Paper className={theme.paper} style={{marginTop: theme.spacing(8), display: 'flex', flexDirection: 'column',  alignItems: 'center', padding: theme.spacing(2)}} elevation={3}>
-        <Avatar className={theme.avatar} style={{margin: theme.spacing(1), backgroundColor: theme.palette.secondary.main}}>
+    <Container component="main" maxWidth="xs">
+      <Paper className={classes.paper} elevation={3}>
+        <Avatar className={classes.avatar} style={{}}>
           <LockOutlined/>
         </Avatar>
         <Typography variant="h5">{isSignup? 'Sign Up' : 'Sign In'}</Typography>
-        <form action="" className={theme.form} style={{ width: '100%', marginTop: theme.spacing(3)}} onSubmit={handleSubmit}>
+        <form action="" className={classes.form} style={{}} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             {
               isSignup && (
@@ -86,8 +115,7 @@ const Auth = () => {
 
 
 
-            <Button type="submit" fullWidth variant="contained" color="primary" className={theme.submit} style={{margin: theme.spacing(3, 0, 3, 2)}}>{isSignup? 'Sign Up': 'Sign In'}</Button>
-            <div fullWidth style={{margin: theme.spacing(0, 0, 0, 2)}}>
+            <Button type="submit" fullWidth variant="contained" color="primary" className={classes.submit} style={{}}>{isSignup? 'Sign Up': 'Sign In'}</Button>
             <GoogleLogin fullWidth
               clientId="435406527920-e6hcotuj5fj19sskellb3jpenmf91hif.apps.googleusercontent.com"
               buttonText="Sign in with Google"
@@ -95,14 +123,11 @@ const Auth = () => {
               onFailure={googleError}
               cookiePolicy="single_host_origin"
               render={(renderProps) => (
-                <button onClick={renderProps.onClick} fullWidth  disabled={renderProps.disabled}>
+                <button onClick={renderProps.onClick} disabled={renderProps.disabled}>
                   Sign in with Google
                 </button>
               )}
             />
-
-</div>
-
             <Grid container justifyContent="flex-end"><Grid item><Button onClick={switchMode}>{isSignup? 'Already have account? Sign In': 'Dont have account? Sign In'}</Button></Grid></Grid>
           </Grid>
         </form>
@@ -113,4 +138,4 @@ const Auth = () => {
   )
 }
 
-export default Auth
+export default Auth;
