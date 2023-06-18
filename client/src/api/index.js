@@ -1,6 +1,7 @@
 import axios from 'axios';
 
-const API = axios.create({ baseURL: 'http://localhost:5000' })
+const BaseUrl = process.env.BaseUrl || 'http://localhost:5000';
+const API = axios.create({ baseURL: BaseUrl  })
 
 API.interceptors.request.use((req) => {
     try {
