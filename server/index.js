@@ -12,19 +12,19 @@ import userRoutes from './routes/users.js';
 const app = express();
 
 
-app.use(bodyParser.json({ limit: "30mb", extended: true}));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true}));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
 app.use(cors());
 
 app.use('/posts', postRoutes);
 app.use('/user', userRoutes);
 
-app.get('/', (req,res) => {
-    res.send('APP IS RUNNING');
+app.get('/', (req, res) => {
+  res.send('APP IS RUNNING');
 });
 
 // connection
-const CONNECTION_URL = process.env.REACT_APP_CONNECTION_URL || "mongodb://ak2711474:ak2711474@ac-pjsrkgs-shard-00-00.dxx9jxd.mongodb.net:27017,ac-pjsrkgs-shard-00-01.dxx9jxd.mongodb.net:27017,ac-pjsrkgs-shard-00-02.dxx9jxd.mongodb.net:27017/?ssl=true&replicaSet=atlas-6w9zwt-shard-0&authSource=admin&retryWrites=true&w=majority";
+const CONNECTION_URL = process.env.REACT_APP_CONNECTION_URL;
 const PORT = process.env.PORT || "5000";
 
 console.log(process.env.REACT_APP_CONNECTION_URL);
